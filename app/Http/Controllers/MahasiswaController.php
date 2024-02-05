@@ -44,7 +44,6 @@ class MahasiswaController extends Controller
         //
         // ddd($request);
         // return $request->file('image')->store('public/images');
-        try{
         $validated = $request->validate([
             'nama' => 'required|max:255',
             'nim' => 'nullable|unique:mahasiswas|numeric|min_digits:10|max_digits:10',
@@ -60,10 +59,6 @@ class MahasiswaController extends Controller
         // dd($validated);
         Mahasiswa::create($validated);
         return redirect('/mahasiswa')->with('success', 'Berhasil Menambah Data');
-    }
-    catch (ValidationException $e){
-        dd($e->validator->errors());
-    }
     }
 
     /**
